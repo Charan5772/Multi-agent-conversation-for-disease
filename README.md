@@ -1,74 +1,74 @@
-<h1><p align = "center"> Medical Insurance Cost Prediction</p></h1>
+# Multi-agent-conversation-for-disease-diagnosis
 
-## PROJECT OVERVIEW
-Health insurance costs have risen dramatically over the past decade in response to the rising cost of health care services and are determined by a multitude of factors. Let's look at the cost of healthcare for a sample of the population given age, sex, bmi, number of children, smoking habits, and region.
+## Introduction
 
-The purpose of this project is to determine the contributing factors and predict health insurance cost by performing exploratory data analysis and predictive modeling on the Health Insurance dataset. This project makes use of Numpy, Pandas, Sci-kit learn, and Data Visualization libraries.
+This repository presents a novel multi-agent conversation framework designed to enhance the capabilities of Large Language Models (LLMs) in diagnosing complex diseases. Our approach, structured under the Autogen framework, allows for in-depth conversations among LLMs, paving the way for more accurate and nuanced disease diagnosis.
 
-<b>Overview:</b> <br>
-â¢ Seek insight from the dataset with Exploratory Data Analysis <br>
-â¢ Performed Data Processing, Data Engineering and Feature Transformation to prepare data before modeling <br>
-â¢ Built a model to predict Insurance Cost based on the features <br>
-â¢ Evaluated the model using various Performance Metrics like RMSE, R2, Testing Accuracy, Training Accuracy and MAE <br>
+## Preprint Article
 
-## DATA DESCRIPTION
-1. age: age of primary beneficiary
-2. sex: insurance contractor gender, female, male
-3. bmi: Body mass index, providing an understanding of body, weights that are relatively high or low relative to height,
-objective index of body weight (kg / m ^ 2) using the ratio of height to weight, ideally 18.5 to 24.9
-4. children: Number of children covered by health insurance / Number of dependents
-5. smoker: Smoking
-6. region: the beneficiary's residential area in the US, northeast, southeast, southwest, northwest
-7. charges: Individual medical costs billed by health insurance
+Our work has been documented in a preprint article titled "One is Not Enough: Multi-Agent Conversation Framework Enhances Rare Disease Diagnostic Capabilities of Large Language Models". For more insights into our study, please visit: https://www.researchsquare.com/article/rs-3757148/v1
 
-Data source : https://www.kaggle.com/mirichoi0218/insurance
+Multi Agent Conversation Flow
+![image](https://github.com/geteff1/Multi-agent-conversation-for-disease-diagnosis/assets/148701415/357585db-30b8-487d-83f6-1d8640e9ec38)
 
-## EXPLORATORY DATA ANALYSIS (EDA)
-â¢ Feature sex, region has an almost balanced amount, meanwhile most people are non smoker & obese <br>
-![image](https://user-images.githubusercontent.com/80570935/130601931-826570ec-df1d-4b85-918f-00eb740ed212.png)
+In 2024-08-26 updates: 1.You may vary the number of doctor agents; 2.You may exclude the supervisor agent; 3.You may assign case specific clinical specialty to doctor agents; 4.You may change the base model of the framework.
+**Test Dataset**
 
-â¢ A person who smoke and have BMI above 30 tends to have a higher medical cost <br>
-![image](https://user-images.githubusercontent.com/80570935/130602334-b62a7f7e-e1c8-45eb-be7d-ff752853d158.png)
+302 disease cases were retrieved. Each case was curated as primary consultation and follow-up consultation to test the effectiveness of LLMs in actual clincial scenarios.
+![Figure 2](https://github.com/geteff1/Multi-agent-conversation-for-disease-diagnosis/assets/148701415/8762cb39-adaf-42a9-b123-9aef73e578bc)
 
-â¢ Older people who smoke have more expensive charges <br>
-![image](https://user-images.githubusercontent.com/80570935/130602565-2cb73fa9-769b-4822-880e-c009d2fbef39.png)
+## Runtime Estimate
 
-â¢ People who smoke and obese have the highest average charges compared to others <br>
-![image](https://user-images.githubusercontent.com/80570935/130602770-c008fb2b-2041-440e-b92e-373e7cbed2ce.png)
+The estimated time to run a single case using our framework is approximately 5-10 minutes, varying slightly based on system specifications and network conditions.
 
-## INSIGHTS
-The insights drawn by performing `Exploratory Data Analysis` (EDA) are:
+## Setup
+ * Install anaconda: https://www.anaconda.com/distribution/
+ * set up conda environment w/ python 3.8, ex:
+    * `conda create --name mac python=3.8`
+    * `conda activate mac`
+    * `pip install pyautogen==0.2.32`
 
-- Most people are a non smokers & obese.
-- Feature sex, region has an almost balanced amount.
-- People who smoke & have a higher BMI, has higher medical charges.
-- Older people who smoke have more expensive charges.
-- An obese person who smokes have higher charges.
 
-## DATA PROCESSING 
-1. Check missing value - there are none <br>
-2. Check duplicate value - there are 1 duplicate, will be remove <br>
-3. Feature engineering - make a new column `weight_status` based on BMI score <br>
-4. Feature transformation: <br>
- A) Encoding `sex`, `region`, & `weight_status` attributes <br>
- B) Ordinal encoding `smoker` attribute <br>
-5. Modeling: <br>
- A) Separating target & features <br>
- B) Splitting train & test data <br>
- C) Modeling using Linear Regression, Random Forest, Decision Tree, Ridge, & Lasso algorithm <br>
- D) Find the best algorithm <br>
- E) Tuning Hyperparameter <br>
- 
-## MODEL EVALUATION 
-| Score | LinearRegression | DecisionTree | RandomForest | Ridge |
-| ----------- | ----------- | ----------- | ----------- | ----------- |
-| R2 | 0.77 | 0.78 | 0.78 | 0.86 |
-| Train Accuracy | 0.74 | 1.0 | 0.97 | 0.74 |
-| MAE | 4305.20 | 2798.83 | 2608.55 | 4311.10 |
-| Test Accuracy | 0.77 | 0.78 | 0.86 | 0.77 | 
-| RMSE | 6209.88 | 6067.50 | 4841.88 | 6238.13 |
- 
-## CONCLUSION
-Based on the predictive modeling, Linear Regression algorithm has the best score compared to the others, with MAE Score 4305.20, RMSE Score 6209.88, & R2 Score 0.77. <br>
+## Training
+You should first set your API, proxy, and corresponding model list in **configs/config_list.json**.
+```bash
+    {
+        "model": "gpt-4o",  # It can be OpenAI's models, or others such as Claude, Gemini, LLaMA 3.1, etc.
+        "api_key": "", # your API
+        "base_url": "", # base URL
+        "tags": [
+            "x_gpt4o"
+        ]  # You can assign different tags to different models.
+    },
+```
+You can also use locally deployed models, such as oLlama and LiteLLM together. For more details, see "https://microsoft.github.io/autogen/docs/topics/non-openai-models/local-litellm-ollama."
+```bash
+    {
+        "model": "llama3.1", 
+        "api_key": "NotRequired",
+        "base_url": "http://0.0.0.0:4000",
+        "tags": [
+            "llama3.1"
+        ]
+    }
+```
 
-Therefore, Linear Regression algorithm is the best fitted model based on the training and testing accuracy.
+All commands should be run under the project root directory.
+
+```bash
+sh scripts/train.sh
+```
+
+## Evaluation
+All commands should be run under the project root directory.
+
+```bash
+bash scripts/eval.sh
+```
+
+## Results
+Results will be saved in a folder named `outputs/`. 
+
+## Contributing
+
+We welcome contributions to this project. If you have suggestions for improvements or want to report issues, please feel free to open an issue or submit a pull request.
