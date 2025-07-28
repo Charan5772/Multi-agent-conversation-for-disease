@@ -1,12 +1,15 @@
-# Multi-agent-conversation-for-disease-diagnosis
+# Multi-Agent Conversation for Disease Diagnosis
+This project explores the fascinating concept of using a multi-agent conversational framework to enhance the diagnostic capabilities of Large Language Models (LLMs), particularly for complex diseases.
 
-## Introduction
+# Acknowledgement & Inspiration
+This repository is heavily inspired by the groundbreaking research presented in the preprint article:
+"One is Not Enough: Multi-Agent Conversation Framework Enhances Rare Disease Diagnostic Capabilities of Large Language Models"
 
-This repository presents a novel multi-agent conversation framework designed to enhance the capabilities of Large Language Models (LLMs) in diagnosing complex diseases. Our approach, structured under the Autogen framework, allows for in-depth conversations among LLMs, paving the way for more accurate and nuanced disease diagnosis.
+I want to express my sincere appreciation for the authors' work, which provides a novel and powerful approach to a challenging problem in medical AI. Their framework, which leverages collaborative conversations between multiple LLM agents, is a significant step forward.
 
-## Preprint Article
+You can find the original paper here: https://www.researchsquare.com/article/rs-3757148/v1
 
-Our work has been documented in a preprint article titled "One is Not Enough: Multi-Agent Conversation Framework Enhances Rare Disease Diagnostic Capabilities of Large Language Models". For more insights into our study, please visit: https://www.researchsquare.com/article/rs-3757148/v1
+This project aims to implement and explore the concepts detailed in their paper, serving as a practical, hands-on example of their multi-agent diagnostic system.
 
 Multi Agent Conversation Flow
 ![image](https://github.com/geteff1/Multi-agent-conversation-for-disease-diagnosis/assets/148701415/357585db-30b8-487d-83f6-1d8640e9ec38)
