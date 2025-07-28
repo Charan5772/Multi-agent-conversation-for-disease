@@ -11,6 +11,9 @@ You can find the original paper here: https://www.researchsquare.com/article/rs-
 
 This project aims to implement and explore the concepts detailed in their paper, serving as a practical, hands-on example of their multi-agent diagnostic system.
 
+# Core Concept
+The framework operates on the principle that multiple specialized AI "doctor" agents, managed by a "supervisor" agent, can collaborate to analyze a patient's case. This conversational process allows for a more nuanced and thorough diagnostic evaluation than a single LLM could achieve on its own.
+
 Multi Agent Conversation Flow
 ![image](https://github.com/geteff1/Multi-agent-conversation-for-disease-diagnosis/assets/148701415/357585db-30b8-487d-83f6-1d8640e9ec38)
 
